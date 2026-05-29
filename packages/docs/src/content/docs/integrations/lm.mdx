@@ -1,0 +1,13 @@
+---
+title: lm redact
+---
+
+Comando em `.bin/lm/src/commands/redact.ts`.
+
+- Não importa `writelynx` no processo do `lm`
+- Faz `spawn` de `node` + `writelynx/dist/cli/main.js`
+- Repassa flags: `--rules`, `--only`, `--validate`, `--dry-run`, `--json`
+
+```bash
+lm redact --only pii,auth < access.log
+```

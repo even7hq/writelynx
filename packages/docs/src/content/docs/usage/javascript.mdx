@@ -1,0 +1,65 @@
+---
+title: Uso em JavaScript
+---
+
+## Instalação
+
+```bash
+yarn add writelynx
+```
+
+No monorepo WriteLynx: `yarn workspace writelynx build`.
+
+## Início rápido
+
+```typescript
+import { WriteLynxEngine } from "writelynx";
+
+const engine = WriteLynxEngine.createDefault();
+
+console.log(engine.redactString("cpf 529.982.247-25"));
+console.log(engine.redact({ password: "x", name: "Ana" }));
+```
+
+## Validação
+
+```typescript
+engine.validate("cpf", "529.982.247-25");
+engine.test("cpf", "529.982.247-25");
+engine.extract("cpf", "texto com 529.982.247-25");
+```
+
+## Regras custom
+
+```typescript
+const engine = WriteLynxEngine.create({
+    rulesPaths: ["./custom-rules.json"]
+});
+
+engine.registerPatternRule({
+    id: "tenant_token",
+    pattern: "TENANT-[A-Z0-9]+",
+    replacement: "TENANT-***",
+    uses: ["redaction"]
+});
+
+engine.reload();
+```
+
+## API principal
+
+| Método | Descrição |
+|--------|-----------|
+| `redact(value)` | Redige objeto/array/string recursivamente |
+| `redactString(str)` | Redige padrões em texto |
+| `containsSensitiveData(value)` | Detecta sem alterar |
+| `validate(ruleId, value)` | Valida checksum quando a regra tem `validator` |
+| `setEnabled(false)` | Desliga redação (debug) |
+| `loadRulesFromFile(path)` | Merge de JSON custom |
+| `getActiveRules()` | Ruleset após merge |
+
+## Boas práticas
+
+- Compile uma vez: use `createDefault()` ou `create()` e reutilize a instância.
+- Redija **antes** de enviar logs ao Winston, OTEL ou SSE.
+- Não desative redação em produção sem controle explícito.

@@ -1,0 +1,32 @@
+---
+title: Primeiros passos
+---
+
+## CLI (mais rápido)
+
+```bash
+cat app.log | writelynx
+writelynx --validate cpf '529.982.247-25'
+```
+
+## Node
+
+```bash
+yarn add writelynx
+```
+
+```typescript
+import { WriteLynxEngine } from "writelynx";
+
+const engine = WriteLynxEngine.createDefault();
+engine.redactString("Bearer secret-token-value");
+```
+
+## Lua (OpenResty)
+
+```lua
+local writelynx = require("luckymaker.writelynx")
+ngx.say(writelynx.redact_string(log_line))
+```
+
+Veja os guias completos em **Uso** na barra lateral.

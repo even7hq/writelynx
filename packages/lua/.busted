@@ -1,0 +1,9 @@
+return {
+    default = {
+        verbose = true,
+        coverage = false,
+        helper = "spec/helper.lua",
+        lua = "lua5.1",
+        ROOT = "."
+    }
+}

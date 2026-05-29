@@ -1,0 +1,24 @@
+{
+  "cpf_mod11": {
+    "type": "mod11",
+    "digitLength": 11,
+    "rejectAllSame": true,
+    "checks": [
+      { "weights": [10, 9, 8, 7, 6, 5, 4, 3, 2], "checkIndex": 9 },
+      { "weights": [11, 10, 9, 8, 7, 6, 5, 4, 3, 2], "checkIndex": 10 }
+    ]
+  },
+  "cnpj_mod11": {
+    "type": "mod11",
+    "digitLength": 14,
+    "rejectAllSame": true,
+    "checks": [
+      { "weights": [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2], "checkIndex": 12 },
+      { "weights": [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2], "checkIndex": 13 }
+    ]
+  },
+  "credit_card_luhn": {
+    "type": "luhn",
+    "digitLength": 16
+  }
+}

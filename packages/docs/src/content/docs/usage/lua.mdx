@@ -1,0 +1,73 @@
+---
+title: Uso em Lua
+---
+
+## Onde fica o código
+
+Pacote: `packages/lua/src/writelynx/`. No proxy LuckyMaker: `src/packages/luckymaker/writelynx/` (cópia sincronizada no build).
+
+```lua
+local writelynx = require("luckymaker.writelynx")
+```
+
+## OpenResty
+
+No `init_worker`:
+
+```lua
+local writelynx = require("luckymaker.writelynx")
+local path = os.getenv("LM_WRITELYNX_RULES")
+
+if path and path ~= "" then
+    writelynx.load(path)
+end
+```
+
+No logger, antes de gravar a linha:
+
+```lua
+formatted_message = writelynx.redact_string(formatted_message)
+```
+
+## Início rápido
+
+```lua
+writelynx.redact_string("token Bearer abcdefghijklmnop")
+writelynx.redact_object({ password = "x", name = "Bob" })
+```
+
+## Validação
+
+```lua
+writelynx.validate("cpf", "529.982.247-25")
+writelynx.test("cpf", "529.982.247-25")
+writelynx.extract("cpf", texto)
+```
+
+## Regras custom
+
+```lua
+writelynx.load("/etc/luckymaker/writelynx-rules.json")
+writelynx.reload()
+```
+
+Arquivo custom faz **merge** sobre o builtin embutido em `builtin_rules.lua`.
+
+## Testes locais
+
+```bash
+cd packages/lua
+busted spec
+```
+
+Com `ngx_re_mock` para rodar fora do OpenResty.
+
+## Paridade com JS
+
+| JavaScript | Lua |
+|------------|-----|
+| `redactString` | `redact_string` |
+| `redact` | `redact_object` |
+| `validate` | `validate` |
+| `loadRulesFromFile` | `load` |
+| `reload` | `reload` |

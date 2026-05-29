@@ -1,0 +1,19 @@
+---
+title: Integração luckymaker-proxy
+---
+
+## Módulo
+
+Código em `src/packages/luckymaker/writelynx/` (sincronizado a partir de `packages/writelynx/packages/lua`).
+
+## init_worker
+
+`phases/init.lua` carrega regras custom quando `LM_WRITELYNX_RULES` aponta para um JSON (ex.: `config/writelynx-rules.json` no deploy).
+
+## Logger
+
+`packages/luckymaker/logger.lua` chama `writelynx.redact_string` na mensagem formatada antes de escrever no arquivo de log.
+
+## Regras custom
+
+Somente overrides/adições; builtin já está em `builtin_rules.lua` gerado por `yarn build:lua-builtin`.

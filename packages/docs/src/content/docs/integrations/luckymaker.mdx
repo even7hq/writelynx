@@ -1,0 +1,24 @@
+---
+title: Integração LuckyMaker
+---
+
+O backend usa o namespace `RedactSensitiveData` em `luckymaker/src/util/RedactSensitiveData.ts`, que delega para `WriteLynxEngine` do pacote `writelynx`.
+
+## API preservada
+
+- `RedactSensitiveData.redact(value)`
+- `RedactSensitiveData.redactString(str)`
+- `RedactSensitiveData.containsSensitiveData(value)`
+- `RedactSensitiveData.setEnabled` / `isEnabled`
+
+## Dependência
+
+```json
+"writelynx": "0.1.0"
+```
+
+Com workspace local: `../packages/writelynx/packages/js` no monorepo.
+
+## Consumidores
+
+Logger, Telemetry, ErrorHandler, debug tasks e plugins admin continuam importando `@/util/RedactSensitiveData` sem mudança de contrato.

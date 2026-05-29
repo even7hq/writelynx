@@ -1,0 +1,28 @@
+---
+title: CLI writelynx
+---
+
+## Exemplos
+
+```bash
+cat sensitive.log | writelynx
+writelynx arquivo.log
+writelynx --only pii,auth arquivo.log
+writelynx --rules ./extra.json arquivo.log
+writelynx --validate cpf '529.982.247-25'
+writelynx --dry-run arquivo.log
+writelynx --json events.ndjson
+```
+
+## Variáveis de ambiente
+
+- `WRITELYNX_RULES` - caminho JSON extra (merge sobre builtin)
+
+## lm redact
+
+O CLI `lm` apenas faz **spawn** do binário `writelynx` (sem importar a engine):
+
+```bash
+cat log | lm redact
+lm redact --validate cpf -- 529.982.247-25
+```

@@ -1,0 +1,10 @@
+---
+title: Templates de replacement
+---
+
+- `$0` - match completo
+- `$1`, `$2` - grupos de captura
+- `$d` - apenas dígitos do match
+- `$0[0:4]`, `$d[-4:]` - slices estilo Python
+
+Exemplo CPF: `***.$d[3:6].$d[6:9]-**`

@@ -1,0 +1,14 @@
+{
+  "name": "@writelynx/lua",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/even7hq/writelynx.git",
+    "directory": "packages/lua"
+  },
+  "scripts": {
+    "test": "busted spec"
+  }
+}

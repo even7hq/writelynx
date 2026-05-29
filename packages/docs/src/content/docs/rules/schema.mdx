@@ -1,0 +1,23 @@
+---
+title: Schema JSON
+---
+
+```json
+{
+  "validators": {
+    "cpf_mod11": { "type": "mod11", "digitLength": 11, "checks": [] }
+  },
+  "field": {
+    "rules": [{ "id": "auth_password", "pattern": "password", "flags": "i" }]
+  },
+  "pattern": {
+    "rules": [{
+      "id": "cpf",
+      "pattern": "...",
+      "validator": "cpf_mod11",
+      "replacement": "***.$d[3:6].$d[6:9]-**",
+      "uses": ["redaction", "validation"]
+    }]
+  }
+}
+```
