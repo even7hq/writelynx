@@ -17,7 +17,7 @@
     "test": "yarn workspace writelynx test && yarn workspace @writelynx/lua test",
     "test:js": "yarn workspace writelynx test",
     "test:lua": "yarn workspace @writelynx/lua test",
-    "docs:dev": "yarn workspace @writelynx/docs dev",
+    "docs:watch": "yarn workspace @writelynx/docs watch",
     "docs:build": "yarn workspace @writelynx/docs build"
   }
 }

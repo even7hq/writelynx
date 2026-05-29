@@ -108,14 +108,14 @@ cd writelynx
 yarn install
 yarn build
 yarn test
-yarn docs:dev
+yarn docs:watch
 ```
 
 | Script | Ação |
 |--------|------|
 | `yarn build` | Compila JS e gera `builtin_rules.lua` |
 | `yarn test` | Vitest (JS) e Busted (Lua, requer `busted` instalado) |
-| `yarn docs:dev` | Servidor de documentação local |
+| `yarn docs:watch` | Servidor de documentação local |
 
 ## Documentação
 
