@@ -99,6 +99,9 @@ Usage:
   cat file.log | writelynx
   writelynx [options] file.log
 
+Without files, input is read from stdin (pipe). In an interactive terminal, run with
+--help or pass file paths; piping is required for stdin mode.
+
 Options:
   --rules <path>       Custom rules JSON (repeatable)
   --only <cats>        Comma-separated categories (pii, auth, payment, ...)
@@ -188,6 +191,11 @@ async function main(): Promise<void> {
     }
 
     if (args.files.length === 0) {
+        if (process.stdin.isTTY) {
+            printHelp();
+            process.exit(0);
+        }
+
         await processStdin(engine, args);
         return;
     }
