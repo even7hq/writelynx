@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "watch": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
